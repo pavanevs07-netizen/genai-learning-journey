@@ -1,0 +1,206 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNcApw6a6g5rbkTkBWnJzyn",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/pavanevs07-netizen/genai-learning-journey/blob/main/Week%201-5/Week%201\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Business card generator in paragraph"
+      ],
+      "metadata": {
+        "id": "TAY1vtwYcFLG"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "name = 'pavan'\n",
+        "print(name)"
+      ],
+      "metadata": {
+        "id": "o8Bi6IZAccxx",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "96d14611-c4f7-4fa3-d950-80a850529eb7"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "pavan\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "name = 'Pavan'\n",
+        "company = 'Accenture'\n",
+        "Role = 'Senior Manager - strategy & consulting'\n",
+        "\n",
+        "print(f\"My name is {name}, i am currently working in {company} and my role is {Role}\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "xLnKqq5r9Mn-",
+        "outputId": "8c4dfad7-db6b-419a-8158-07f041d2d4c8"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "My name is Pavan, i am currently working in Accenture and my role is Senior Manager - strategy & consulting\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def business_card(Name,Company,Role):\n",
+        "  print(f\"My name is {Name}, i am currently working in {Company} and my role is {Role}\")\n",
+        "\n",
+        "people = [{\"Name\":\"Pavan\",\"Company\":\"ACN\",\"Role\":\"SM\"},\n",
+        "          {\"Name\":\"Sri\",\"Company\":\"IBM\",\"Role\":\"VE\"},\n",
+        "          ]\n",
+        "\n",
+        "for person in people:\n",
+        "  business_card(person[\"Name\"],person[\"Company\"],person[\"Role\"])\n",
+        "\n",
+        "\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "sHgpJWl6BBo-",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "234a01bf-fcda-4033-9bf4-cc00394ecec8"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "My name is Pavan, i am currently working in ACN and my role is SM\n",
+            "My name is Sri, i am currently working in IBM and my role is VE\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "km_SBB773W6N"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "VcDcRmYs3Sdu"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "ZLERX2TK3KbA"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "S7hyKDHtA7bf"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "KDxf4PmhA3US"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "xwkFekPQAsLK"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "cuBsnKVKAjXv"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "zdeFRT0U_uqY"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "-W1E6YEO_aGc"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}

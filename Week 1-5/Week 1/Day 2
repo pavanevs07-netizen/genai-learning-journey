@@ -4,7 +4,7 @@
   "metadata": {
     "colab": {
       "provenance": [],
-      "authorship_tag": "ABX9TyPqtf/paF+y7ibvAa+mwfnI",
+      "authorship_tag": "ABX9TyOxunIz9nu6Ne9hCX1bELg+",
       "include_colab_link": true
     },
     "kernelspec": {
@@ -655,9 +655,91 @@
     },
     {
       "cell_type": "code",
-      "source": [],
+      "source": [
+        "#demo ROI calculator"
+      ],
       "metadata": {
         "id": "tVzNy2LebrKt"
+      },
+      "execution_count": 47,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def roi_calc(agent_count, avg_AHT,agent_costPhr):\n",
+        "    print('Annual_cost_Savings =',(agent_count*avg_AHT*agent_costPhr))\n",
+        "\n",
+        "roi_calc(10,2.5,20)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "lqbnO5nLediT",
+        "outputId": "a1e84412-da0c-409d-f39c-ea9d09b70a05"
+      },
+      "execution_count": 49,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "ROI = 500.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "fnV_ocK-e6AW"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "HQIj-WNkex2u"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "02i-YwQaeYPg"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "UmWDWulweXBq"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "wXzhcS92eWCG"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "dcTejrKaeUDx"
       },
       "execution_count": null,
       "outputs": []

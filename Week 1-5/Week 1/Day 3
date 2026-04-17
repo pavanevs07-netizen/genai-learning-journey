@@ -1,1 +1,169 @@
-
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMgNq3NiINi385wdfIGCo7z",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/pavanevs07-netizen/genai-learning-journey/blob/main/Week%201-5/Week%201/Day%203\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 6,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "JQGifdP1iumZ",
+        "outputId": "3d7d217e-1630-4ca9-b1ca-b717d7eeac63"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Budget confirmed - Yes/No? Yes\n",
+            "by decision maker - Yes/NoYes\n",
+            "timeline under 90 days - Yes/No? No\n",
+            "Budget confirmed but delay in timeline\n"
+          ]
+        }
+      ],
+      "source": [
+        "a = input(\"Budget confirmed - Yes/No? \")\n",
+        "b = input(\"by decision maker - Yes/No\")\n",
+        "c = input(\"timeline under 90 days - Yes/No? \")\n",
+        "\n",
+        "if a == \"Yes\" and b == \"Yes\" and c == \"Yes\" :\n",
+        "  print(\"Budget confirmed\")\n",
+        "\n",
+        "elif a == \"Yes\" and b == \"Yes\" and c == \"No\" :\n",
+        "  print(\"Budget confirmed but delay in timeline\")\n",
+        "\n",
+        "elif a == \"No\" and b == \"No\" and c == \"No\" :\n",
+        "  print(\"Budget confirmed but need a followup\")\n",
+        "\n",
+        "else: print(\"Budget not confirmed\")\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "1a-yzUH66KLW"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "z4FZhNU66HnE"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "K4W-RIuR5i7K"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "Rc32mMXF5f9m"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "_Vdeuidp5HMu"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "Esni5U5I5Az0"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "ZEgC5YsQ502y"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "MDDOPRTD5zZA"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "iAHsUS-b5vTd"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "1OFHuMzV5sTl"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "mvr_ytml0_LR"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}

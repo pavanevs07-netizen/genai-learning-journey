@@ -1,1 +1,564 @@
-
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNFTUHSI2e1w3xydJnQmU2h",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/pavanevs07-netizen/genai-learning-journey/blob/main/Week%201-5/Week%201/Day%204\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "9NDaCFwMl1Al"
+      },
+      "outputs": [],
+      "source": [
+        "# match statement"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "num = 3\n",
+        "\n",
+        "match num:\n",
+        "  case 1:\n",
+        "    print (\"One\")\n",
+        "\n",
+        "  case 2:\n",
+        "    print (\"Two\")\n",
+        "\n",
+        "  case 3:\n",
+        "    print (\"Three\")\n",
+        "\n",
+        "  case _:\n",
+        "    print (\"Something else\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Cqwwoxj-V1SL",
+        "outputId": "5726bd41-f0ca-48fc-cfa7-ff1d91f7bc40"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Three\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# while statement"
+      ],
+      "metadata": {
+        "id": "cx5MN3igWoTO"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "i = 1\n",
+        "\n",
+        "while i <= 5:\n",
+        "  print (\"Pavan loves\", end = \"\")\n",
+        "\n",
+        "  j = 1\n",
+        "  while j <= 4:\n",
+        "    print (\" Aadya\")\n",
+        "    j += 1\n",
+        "\n",
+        "  i += 1"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "UB0uLeAlceqi",
+        "outputId": "5b7d9c0c-f6a8-4e3a-b602-9b03aed66210"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Pavan loves Aadya\n",
+            " Aadya\n",
+            " Aadya\n",
+            " Aadya\n",
+            "Pavan loves Aadya\n",
+            " Aadya\n",
+            " Aadya\n",
+            " Aadya\n",
+            "Pavan loves Aadya\n",
+            " Aadya\n",
+            " Aadya\n",
+            " Aadya\n",
+            "Pavan loves Aadya\n",
+            " Aadya\n",
+            " Aadya\n",
+            " Aadya\n",
+            "Pavan loves Aadya\n",
+            " Aadya\n",
+            " Aadya\n",
+            " Aadya\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# for loop"
+      ],
+      "metadata": {
+        "id": "ed1bRQEvc7wL"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "data = [1,'a','pavan',2,5,10]\n",
+        "\n",
+        "#print (data[0:3])\n",
+        "for value in data[0:3]:\n",
+        "  print (value)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "mg-NkSZsdOhy",
+        "outputId": "a2b1a958-0430-4efb-f4b1-264e0176469f"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "1\n",
+            "a\n",
+            "pavan\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "## Day 4: Extend Lead Qualifier: create a list of 5 fake leads as dicts. Loop through, qualify each automatically, print a summary table.\n",
+        "\n",
+        "## Day 3: Build Lead Qualifier Part 1: ask 3 yes/no questions (budget confirmed? decision maker? timeline under 90 days?) → print Hot / Warm / Cold Lead. Your first presales AI tool."
+      ],
+      "metadata": {
+        "id": "Vlpb_36co5Aw"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "leads = [\n",
+        "    {\"name\": \"Acme Corp\",       \"budget\": \"Yes\", \"decision_maker\": \"Yes\", \"timeline\": \"Yes\"},\n",
+        "    {\"name\": \"BlueSky Ltd\",     \"budget\": \"Yes\", \"decision_maker\": \"Yes\", \"timeline\": \"No\"},\n",
+        "    {\"name\": \"Nova Tech\",       \"budget\": \"No\",  \"decision_maker\": \"Yes\", \"timeline\": \"Yes\"},\n",
+        "    {\"name\": \"Peak Solutions\",  \"budget\": \"Yes\", \"decision_maker\": \"No\",  \"timeline\": \"No\"},\n",
+        "    {\"name\": \"Orbit Systems\",   \"budget\": \"No\",  \"decision_maker\": \"No\",  \"timeline\": \"No\"},\n",
+        "]\n",
+        "\n",
+        "def qualify_lead(lead):\n",
+        "  a = lead[\"budget\"]\n",
+        "  b = lead[\"decision_maker\"]\n",
+        "  c = lead[\"timeline\"]\n",
+        "\n",
+        "  if a == \"Yes\" and b == \"Yes\" and c == \"Yes\":\n",
+        "    return \"Hot Lead\"\n",
+        "\n",
+        "  elif a == \"Yes\" and b == \"Yes\" and c == \"No\":\n",
+        "    return \"Warm Lead\"\n",
+        "\n",
+        "  elif a == \"Yes\" and b == \"No\" and c == \"Yes\":\n",
+        "    return \"Warm Lead\"\n",
+        "\n",
+        "  elif a == \"Yes\" and b == \"No\" and c == \"No\":\n",
+        "    return \"Going out Lead\"\n",
+        "\n",
+        "  else :\n",
+        "    return \"Cold Lead\"\n",
+        "\n",
+        "for lead in leads:\n",
+        "  lead_name = lead[\"name\"]\n",
+        "  lead_status = qualify_lead(lead)\n",
+        "  print (f\"{lead_name} is a {lead_status}\")\n",
+        "  print (\"\")\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "cBHI5PR9oyxe",
+        "outputId": "8ef77afc-237f-49a8-84a8-8a4f742f34f9"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Acme Corp is a Hot Lead\n",
+            "\n",
+            "BlueSky Ltd is a Warm Lead\n",
+            "\n",
+            "Nova Tech is a Cold Lead\n",
+            "\n",
+            "Peak Solutions is a Going out Lead\n",
+            "\n",
+            "Orbit Systems is a Cold Lead\n",
+            "\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "wqMOaBBSEC14"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "S2cJOi8C_6FI"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "mHCk3d0W_1G7"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "NS8jFT0e_sUb"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "xMpySQNE_o5q"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "BEewoqGW_jZT"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "xSs_yKpx_UKX"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "7W7uP55XsIi7"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "8xg1JulGrnjc"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "Vqxjt4hErd4g"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "i3pRGAHirb4e"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "SsTovF4KrSjx"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "GZcBC1qyrFbq"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "jk3vTciArAow"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "A4xrPVVoqLEW"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "q4NkHbWBovz8"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "2xh7ugvBosQG"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "vDY1fzIyok2V"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "e_nSjEhkojXE"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "QdQZGQWXogkF"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "2_Gjvfiqc4ga"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "bfH8OdNFcuMe"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "ZNf4mJ0dcoXQ"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "1IaL8gLhcnde"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "eOuHMx81X_sE"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "8uq4RfUoXorr"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "YevAnCG8Xmq8"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "rNvbyBh6XKF1"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "2BamytMfXEXB"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "VE_ptsLeW_7z"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "5LfdY8F-W-o9"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "SyyYnOT6W2Ww"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "QBG686I0WjVQ"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "HIZJ3FfMWfL4"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}

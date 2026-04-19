@@ -1,1 +1,160 @@
-
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMVjM1aZdBtjOgJIlkE1MRu",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/pavanevs07-netizen/genai-learning-journey/blob/main/Week%201-5/Week%201/Day%205\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 8,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "6jNwRJC_9luT",
+        "outputId": "2252c261-20b0-4d84-824f-542871234612"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Acme Corp score is 3\n",
+            "\n",
+            "BlueSky Ltd score is 2\n",
+            "\n",
+            "Nova Tech score is 2\n",
+            "\n",
+            "Peak Solutions score is 1\n",
+            "\n",
+            "Orbit Systems score is 0\n",
+            "\n"
+          ]
+        }
+      ],
+      "source": [
+        "leads = [\n",
+        "    {\"name\": \"Acme Corp\",       \"budget\": \"Yes\", \"decision_maker\": \"Yes\", \"timeline\": \"Yes\"},\n",
+        "    {\"name\": \"BlueSky Ltd\",     \"budget\": \"Yes\", \"decision_maker\": \"Yes\", \"timeline\": \"No\"},\n",
+        "    {\"name\": \"Nova Tech\",       \"budget\": \"No\",  \"decision_maker\": \"Yes\", \"timeline\": \"Yes\"},\n",
+        "    {\"name\": \"Peak Solutions\",  \"budget\": \"Yes\", \"decision_maker\": \"No\",  \"timeline\": \"No\"},\n",
+        "    {\"name\": \"Orbit Systems\",   \"budget\": \"No\",  \"decision_maker\": \"No\",  \"timeline\": \"No\"},\n",
+        "]\n",
+        "\n",
+        "def qualify_lead(lead):\n",
+        "    a = lead [\"budget\"]\n",
+        "    b = lead [\"decision_maker\"]\n",
+        "    c = lead [\"timeline\"]\n",
+        "\n",
+        "    if a == \"Yes\" and b == \"Yes\" and c == \"Yes\":\n",
+        "        return 3\n",
+        "    elif a == \"Yes\" and b == \"Yes\" and c == \"No\":\n",
+        "        return 2\n",
+        "    elif a == \"Yes\" and b == \"No\" and c == \"Yes\":\n",
+        "        return 2\n",
+        "    elif a == \"Yes\" and b == \"No\" and c == \"No\":\n",
+        "        return 1\n",
+        "    elif a == \"No\" and b == \"Yes\" and c == \"Yes\":\n",
+        "        return 2\n",
+        "    elif a == \"No\" and b == \"Yes\" and c == \"No\":\n",
+        "        return 1\n",
+        "    elif a == \"No\" and b == \"No\" and c == \"Yes\":\n",
+        "        return 1\n",
+        "    elif a == \"No\" and b == \"No\" and c == \"No\":\n",
+        "        return 0\n",
+        "    else: return 0\n",
+        "\n",
+        "\n",
+        "for lead in leads:\n",
+        "  lead_name = lead[\"name\"]\n",
+        "  score = qualify_lead(lead)\n",
+        "  print(f\"{lead_name} score is {score}\")\n",
+        "  print(\"\")\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# in a system arch diagram, we need to capture or show 4 levels of details as per the C4 model of diagrams - context, container, component, code\n",
+        "# each context (software app) has multiple containers. each container has multiple components and each component has multiple codes\n",
+        "\n",
+        "#L1 (Context): Actors + Sprinklr CCaaS + enterprise landscape integrations (CRM/ITSM/WFM/IdP/CPaaS/DWH/KB). [Sprinklr_C...chitecture | PowerPoint], [Sprinklr_C..._1_Slide 1 | PowerPoint], [Draft_cont...cture_FY25 | PowerPoint]\n",
+        "#L2 (Container): Channels/entry, routing/orchestration, agent & supervisor apps, AI, analytics, integration hub, identity/security, data stores/streaming, multi-tenant infra. [Sprinklr_C...chitecture | PowerPoint], [Contact Ce...ure V1.0 2 | PowerPoint], [Draft_cont...cture_FY25 | PowerPoint]\n",
+        "#L3 (Component): Choose one container (routing, agent experience, integration hub) and decompose into responsibility-level components (routing policies, assignment engine, work queue store, rules/scheduler, SLA alerts, connectors, etc.). [Contact Ce...ure V1.0 2 | PowerPoint], [Draft_cont...cture_FY25 | PowerPoint], [Sprinklr_C...chitecture | PowerPoint]\n",
+        "#L4 (Code): Only for engineering deep dives; otherwise skip."
+      ],
+      "metadata": {
+        "id": "oWzHJbW9Baau"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "3S9oIBzqBFqt"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "jPk4Vfz1AwkN"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "NSajYpxGAvdG"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "G1zwgE4YAmth"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "-kY2jXWQAg92"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}

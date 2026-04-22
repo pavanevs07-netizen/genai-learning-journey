@@ -1,1 +1,576 @@
-
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOO5icyTPwV+m5mlYo48/ir",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/pavanevs07-netizen/genai-learning-journey/blob/main/Week%201-5/Week%202/Day%201\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 9,
+      "metadata": {
+        "id": "WglsCi-KXENs"
+      },
+      "outputs": [],
+      "source": [
+        "Sprinklr_complaints = ['Credit_Card', 'Debit_cards','Loans','Payments','Block/unblock_Cards','Trading','Bank_Transfer','FD','Tax_saver_deposits','CC_Billing','DC_Billing','Other_Billing']"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "Rt2d2S8lbLXx"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "type(Sprinklr_complaints)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "HjboN73saxIg",
+        "outputId": "00f90e8b-eca0-4b24-ab16-187cad774f47"
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "list"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 2
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "Sprinklr_complaints.sort()"
+      ],
+      "metadata": {
+        "id": "_UHmk6Wcazxj"
+      },
+      "execution_count": 10,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "Z5lVZU-ubMbg"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "Sprinklr_complaints"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "UieAyliObAl-",
+        "outputId": "ca2ea948-9165-44e4-c142-5dcfefa251fe"
+      },
+      "execution_count": 11,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['Bank_Transfer',\n",
+              " 'Block/unblock_Cards',\n",
+              " 'CC_Billing',\n",
+              " 'Credit_Card',\n",
+              " 'DC_Billing',\n",
+              " 'Debit_cards',\n",
+              " 'FD',\n",
+              " 'Loans',\n",
+              " 'Other_Billing',\n",
+              " 'Payments',\n",
+              " 'Tax_saver_deposits',\n",
+              " 'Trading']"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 11
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "Sprinklr_complaints ('Billing')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 141
+        },
+        "id": "wIz9GARabNA-",
+        "outputId": "94acfdcd-9397-4869-fd02-be732efef052"
+      },
+      "execution_count": 12,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "TypeError",
+          "evalue": "'list' object is not callable",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mTypeError\u001b[0m                                 Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipykernel_677/3855225354.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0mSprinklr_complaints\u001b[0m \u001b[0;34m(\u001b[0m\u001b[0;34m'Billing'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+            "\u001b[0;31mTypeError\u001b[0m: 'list' object is not callable"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "Sprinklr_complaints"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ZH4Z5UZObZu4",
+        "outputId": "0220bf58-2feb-4772-920f-ab3e5a0f956a"
+      },
+      "execution_count": 13,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['Bank_Transfer',\n",
+              " 'Block/unblock_Cards',\n",
+              " 'CC_Billing',\n",
+              " 'Credit_Card',\n",
+              " 'DC_Billing',\n",
+              " 'Debit_cards',\n",
+              " 'FD',\n",
+              " 'Loans',\n",
+              " 'Other_Billing',\n",
+              " 'Payments',\n",
+              " 'Tax_saver_deposits',\n",
+              " 'Trading']"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 13
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "Filtered_List = [w for w in Sprinklr_complaints if 'Billing' in w]\n",
+        "print(Filtered_List)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Z-Ss13IkcVvU",
+        "outputId": "79e7e5e8-a300-4d3f-eda9-819ae3bd9984"
+      },
+      "execution_count": 15,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['CC_Billing', 'DC_Billing', 'Other_Billing']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "Sprinklr_complaints.count('Billing')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "1ADMtIqJcfWc",
+        "outputId": "04928c85-27cb-44ac-8091-96bf3943e7ed"
+      },
+      "execution_count": 17,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "0"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 17
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "len(Sprinklr_complaints)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "eRZP7gQbdHpl",
+        "outputId": "0a052979-cef2-4a3c-b686-86f987e12b7d"
+      },
+      "execution_count": 18,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "12"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 18
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "Sprinklr_complaints.append('Billing')"
+      ],
+      "metadata": {
+        "id": "XRb8iS4ydPWO"
+      },
+      "execution_count": 22,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "Sprinklr_complaints"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "izEMefVbdZ8q",
+        "outputId": "1171edd8-f86f-4f46-b978-818d89faf5d3"
+      },
+      "execution_count": 23,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['Bank_Transfer',\n",
+              " 'Block/unblock_Cards',\n",
+              " 'CC_Billing',\n",
+              " 'Credit_Card',\n",
+              " 'DC_Billing',\n",
+              " 'Debit_cards',\n",
+              " 'FD',\n",
+              " 'Loans',\n",
+              " 'Other_Billing',\n",
+              " 'Payments',\n",
+              " 'Tax_saver_deposits',\n",
+              " 'Trading',\n",
+              " 'Billing',\n",
+              " 'Billing',\n",
+              " 'Billing']"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 23
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "Sprinklr_complaints.sort()"
+      ],
+      "metadata": {
+        "id": "fJ6MwP4ida5p"
+      },
+      "execution_count": 24,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "Filtered_list2 = [w for w in Sprinklr_complaints if 'Billing' in w]\n",
+        "print(Filtered_list2)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jGm-6OSddfmp",
+        "outputId": "c9b01fbf-dfcd-43ee-8ebe-72d40f218f54"
+      },
+      "execution_count": 26,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['Billing', 'Billing', 'Billing', 'CC_Billing', 'DC_Billing', 'Other_Billing']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "Sprinklr_complaints.remove('Billing')"
+      ],
+      "metadata": {
+        "id": "sHV_ONXadv8d"
+      },
+      "execution_count": 27,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "Sprinklr_complaints"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "IEeIrHf1d4CP",
+        "outputId": "d658977d-68ae-416a-972c-0d7fafcdc8e5"
+      },
+      "execution_count": 28,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['Bank_Transfer',\n",
+              " 'Billing',\n",
+              " 'Billing',\n",
+              " 'Block/unblock_Cards',\n",
+              " 'CC_Billing',\n",
+              " 'Credit_Card',\n",
+              " 'DC_Billing',\n",
+              " 'Debit_cards',\n",
+              " 'FD',\n",
+              " 'Loans',\n",
+              " 'Other_Billing',\n",
+              " 'Payments',\n",
+              " 'Tax_saver_deposits',\n",
+              " 'Trading']"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 28
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "no_duplicates = list(dict.fromkeys(Sprinklr_complaints))"
+      ],
+      "metadata": {
+        "id": "nbhY8LSbd5qe"
+      },
+      "execution_count": 29,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "no_duplicates"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "wS-by66yeKCU",
+        "outputId": "b8473b6e-ef43-4cb1-c0d7-0c11c09371c5"
+      },
+      "execution_count": 30,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['Bank_Transfer',\n",
+              " 'Billing',\n",
+              " 'Block/unblock_Cards',\n",
+              " 'CC_Billing',\n",
+              " 'Credit_Card',\n",
+              " 'DC_Billing',\n",
+              " 'Debit_cards',\n",
+              " 'FD',\n",
+              " 'Loans',\n",
+              " 'Other_Billing',\n",
+              " 'Payments',\n",
+              " 'Tax_saver_deposits',\n",
+              " 'Trading']"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 30
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "En_32rK_eLX-"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "30zg7eBrdxRo"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "85X01h1LdtL4"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "0dVi-_7YdZWU"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "bvMwHKk9dYVn"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "rkORk_GTdWGN"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "wTUQe9CpdGnM"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "kpckE0LUcc4h"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "XpME395VbB_H"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "E6pf56e4a_jN"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "gKMa_p-9a98X"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "7vedU03ha8Kr"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "x8GROGQRa4f0"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}

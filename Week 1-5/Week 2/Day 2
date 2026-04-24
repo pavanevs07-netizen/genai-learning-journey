@@ -1,1 +1,592 @@
-
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOJPyELImaBZPfk9GWcVtjD",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/pavanevs07-netizen/genai-learning-journey/blob/main/Week%201-5/Week%202/Day%202\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "id": "fRZrOA12EEoD"
+      },
+      "outputs": [],
+      "source": [
+        "#dictionary has a key and value. it has to be in {} while list is in []. within dict, the keys are stored in set {} while the values are stored in list[] formats. meaning the keys cannot be duplicates as set accepts unique values only\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#Create a dict of 5 AI tools: name, use_case, pricing_tier. Loop and print formatted. Add 'supported_industries' as a nested list to each. Practice nested dicts."
+      ],
+      "metadata": {
+        "id": "fJ1GWpJgG2Nv"
+      },
+      "execution_count": 2,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "AI_tools = dict[\n",
+        "    {'name':'ChatGPT','use_case':'basic','pricing_tier':'Beginner'},\n",
+        "     {'name':'GPT-4','use_case':'advanced','pricing_tier':'Advanced'},\n",
+        "     {'name':'Whisper','use_case':'basic','pricing_tier':'Beginner'},\n",
+        "     {'name':'WhisperX','use_case':'advanced','pricing_tier':'Advanced'},\n",
+        "     {'name':'Gemini','use_case':'medium','pricing_tier':'Medium'}\n",
+        "    ]\n"
+      ],
+      "metadata": {
+        "id": "zJiWAturG9P-"
+      },
+      "execution_count": 7,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "type(AI_tools)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "qCapwUClIDoA",
+        "outputId": "4d1c8a21-4d2f-4f6c-f4a3-6200ec70081a"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "types.GenericAlias"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 8
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ai_tools_keys = ['name','use_case','pricing_tier']"
+      ],
+      "metadata": {
+        "id": "diDIHrh2IHKX"
+      },
+      "execution_count": 20,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "wgR1YYZIJddg"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ai_tools_values = [{'chatgpt','gpt4','whisper','whisperx','gemini'},{'basic','advanced','basic','advanced','medium'},{'beginner','advanced','beginner','advanced','medium'}]"
+      ],
+      "metadata": {
+        "id": "-F38dJ9lId0i"
+      },
+      "execution_count": 10,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "type(ai_tools_values)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "lMZ6_C_9I-YJ",
+        "outputId": "070a76c5-50bc-48ef-f51e-dcf257efa4f9"
+      },
+      "execution_count": 11,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "list"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 11
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "type(ai_tools_keys)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "WGoEiOkUJBE2",
+        "outputId": "5cdd8744-22a5-47a1-e5c1-23946d0d5230"
+      },
+      "execution_count": 12,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "set"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 12
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ai_tools_dict = dict(zip(ai_tools_keys,ai_tools_values))"
+      ],
+      "metadata": {
+        "id": "kCP2DrnmJDBZ"
+      },
+      "execution_count": 21,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ai_tools_dict"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "IlJrNTaDJeqo",
+        "outputId": "5d0763ea-53f6-4fe3-f95a-65fd472a3446"
+      },
+      "execution_count": 22,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "{'name': {'chatgpt', 'gemini', 'gpt4', 'whisper', 'whisperx'},\n",
+              " 'use_case': {'advanced', 'basic', 'medium'},\n",
+              " 'pricing_tier': {'advanced', 'beginner', 'medium'}}"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 22
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ai_tools = {\n",
+        "    'Chatgpt': {'use_case': 'basic', 'pricing_tier': 'Beginner'},\n",
+        "    'GPT-4': {'use_case': 'advanced', 'pricing_tier': 'Advanced'},\n",
+        "    'Whisper': {'use_case': 'basic', 'pricing_tier': 'Beginner'},\n",
+        "    'WhisperX': {'use_case': 'advanced', 'pricing_tier': 'Advanced'},\n",
+        "    'Gemini': {'use_case': 'medium', 'pricing_tier': 'Medium'}\n",
+        "}\n",
+        "\n",
+        "\n",
+        "ai_tools['Chatgpt']['Supported_industries'] = {'edu','bfsi','healthcare'}\n",
+        "ai_tools['GPT-4']['Supported_industries'] = {'edu','bfsi','manu'}\n",
+        "ai_tools['Whisper']['Supported_industries'] = {'edu','bfsi','abc'}\n",
+        "ai_tools['WhisperX']['Supported_industries'] = {'edu','bfsi','xyz'}\n",
+        "ai_tools['Gemini']['Supported_industries'] = {'edu','bfsi','all'}\n",
+        "\n",
+        "for name, details in ai_tools.items():\n",
+        "    print(f\"Name          : {name}\")\n",
+        "    print(f\"Use Case      : {details['use_case']}\")\n",
+        "    print(f\"Pricing Tier  : {details['pricing_tier']}\")\n",
+        "    print(f\"Supported Industries: {details['Supported_industries']}\")\n",
+        "    print(f\"\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "8zOtCciEJgGY",
+        "outputId": "fc1f35f3-7d2e-4806-b45d-e3aa81feaeec"
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name          : Chatgpt\n",
+            "Use Case      : basic\n",
+            "Pricing Tier  : Beginner\n",
+            "Supported Industries: {'bfsi', 'healthcare', 'edu'}\n",
+            "\n",
+            "Name          : GPT-4\n",
+            "Use Case      : advanced\n",
+            "Pricing Tier  : Advanced\n",
+            "Supported Industries: {'manu', 'bfsi', 'edu'}\n",
+            "\n",
+            "Name          : Whisper\n",
+            "Use Case      : basic\n",
+            "Pricing Tier  : Beginner\n",
+            "Supported Industries: {'bfsi', 'abc', 'edu'}\n",
+            "\n",
+            "Name          : WhisperX\n",
+            "Use Case      : advanced\n",
+            "Pricing Tier  : Advanced\n",
+            "Supported Industries: {'xyz', 'bfsi', 'edu'}\n",
+            "\n",
+            "Name          : Gemini\n",
+            "Use Case      : medium\n",
+            "Pricing Tier  : Medium\n",
+            "Supported Industries: {'bfsi', 'all', 'edu'}\n",
+            "\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ai_tools"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ulpTuukIRPBs",
+        "outputId": "70145887-1c6e-4f49-d2df-fd3a7a3f47d1"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "{'Chatgpt': {'use_case': 'basic',\n",
+              "  'pricing_tier': 'Beginner',\n",
+              "  'Supported_industries': {'bfsi', 'edu', 'healthcare'}},\n",
+              " 'GPT-4': {'use_case': 'advanced',\n",
+              "  'pricing_tier': 'Advanced',\n",
+              "  'Supported_industries': {'bfsi', 'edu', 'manu'}},\n",
+              " 'Whisper': {'use_case': 'basic',\n",
+              "  'pricing_tier': 'Beginner',\n",
+              "  'Supported_industries': {'abc', 'bfsi', 'edu'}},\n",
+              " 'WhisperX': {'use_case': 'advanced',\n",
+              "  'pricing_tier': 'Advanced',\n",
+              "  'Supported_industries': {'bfsi', 'edu', 'xyz'}},\n",
+              " 'Gemini': {'use_case': 'medium',\n",
+              "  'pricing_tier': 'Medium',\n",
+              "  'Supported_industries': {'all', 'bfsi', 'edu'}}}"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 3
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "SVSGCkstRUON"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "D4Cr2R8fRFKR"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "t7Qx9PHWqRsM"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "pa-vmsezqLRd"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "YY8egY4Jp2yr"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "pFZ0GFP3pzyb"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "bVLDW9AtpqOf"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "bWbU8O3epVRG"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "oRXu0z0dpKCr"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "l7BZ4mdjo9o4"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "eckLvxXHoztM"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "eph0c3Y7JPTF"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "type(ai_tools_dict)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "QpbePBdMJLHd",
+        "outputId": "07fc403a-3a01-4e14-fdf2-55c67ac00880"
+      },
+      "execution_count": 17,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "dict"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 17
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ai_tools_dict"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "53w9IEe-JQFW",
+        "outputId": "bcdf38c7-1c41-44ee-a9d6-d44b5277e523"
+      },
+      "execution_count": 18,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "{'use_case': {'chatgpt', 'gemini', 'gpt4', 'whisper', 'whisperx'},\n",
+              " 'name': {'advanced', 'basic', 'medium'},\n",
+              " 'pricing_tier': {'advanced', 'beginner', 'medium'}}"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 18
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ai_tools_keys"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "LkK8MAJ2JRix",
+        "outputId": "bc5111aa-34fb-420c-c0dc-16cfbd0aec43"
+      },
+      "execution_count": 19,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "{'name', 'pricing_tier', 'use_case'}"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 19
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "3NfwW_AkJZ3K"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "rV6VohBQJM09"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "IPYu09_mJFtO"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "type(AI_tools)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "OtsNwfUSH9g2",
+        "outputId": "4b7b5abb-009f-456c-d52e-282be50d1c73"
+      },
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "list"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 6
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "2yzc1EpvIAJH"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "jWyItXY9H6MA"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "tqoHGJAWHbre"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}

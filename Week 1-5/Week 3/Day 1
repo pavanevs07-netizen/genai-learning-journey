@@ -1,1 +1,296 @@
-
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOE4RYS+6Fm47xN/uAHpgBN",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/pavanevs07-netizen/genai-learning-journey/blob/main/Week%201-5/Week%203/Day%201\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "gFGAdMK1Q541",
+        "outputId": "cf8c8879-edf2-4e3f-ead6-5aca28b90afd"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\n",
+            "Usage:   \n",
+            "  pip3 <command> [options]\n",
+            "\n",
+            "no such option: -i\n"
+          ]
+        }
+      ],
+      "source": [
+        "pip -install requests"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "pip3 -install requests"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 106
+        },
+        "id": "uJEh3lbsSPZ8",
+        "outputId": "a2b5b84a-5a38-45ec-d0c2-6a933b61ee5b"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "SyntaxError",
+          "evalue": "invalid syntax (886328038.py, line 1)",
+          "traceback": [
+            "\u001b[0;36m  File \u001b[0;32m\"/tmp/ipykernel_1088/886328038.py\"\u001b[0;36m, line \u001b[0;32m1\u001b[0m\n\u001b[0;31m    pip3 -install requests\u001b[0m\n\u001b[0m                  ^\u001b[0m\n\u001b[0;31mSyntaxError\u001b[0m\u001b[0;31m:\u001b[0m invalid syntax\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from typing import Required\n",
+        "pip3 -install Required"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 106
+        },
+        "id": "AaCSlDUASSyL",
+        "outputId": "86b17139-c6b9-4bde-f35e-4a625250e844"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "SyntaxError",
+          "evalue": "invalid syntax (1351289114.py, line 2)",
+          "traceback": [
+            "\u001b[0;36m  File \u001b[0;32m\"/tmp/ipykernel_1088/1351289114.py\"\u001b[0;36m, line \u001b[0;32m2\u001b[0m\n\u001b[0;31m    pip3 -install Required\u001b[0m\n\u001b[0m                  ^\u001b[0m\n\u001b[0;31mSyntaxError\u001b[0m\u001b[0;31m:\u001b[0m invalid syntax\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!pip install requests # pip is the python package manager. without it we cannot load public libraries into this session. without ! it wil throw an error. requests package which is installed in this step has HTTP commands. APIs follow HTTP commands - Get, Post, Update, delete"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "bPbdCCvZSWip",
+        "outputId": "0a789ac4-c68f-4835-d101-d90be6c10a03"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Requirement already satisfied: requests in /usr/local/lib/python3.12/dist-packages (2.32.4)\n",
+            "Requirement already satisfied: charset_normalizer<4,>=2 in /usr/local/lib/python3.12/dist-packages (from requests) (3.4.7)\n",
+            "Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.12/dist-packages (from requests) (3.13)\n",
+            "Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/lib/python3.12/dist-packages (from requests) (2.5.0)\n",
+            "Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.12/dist-packages (from requests) (2026.4.22)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import requests #after the requests package is installed, we import the requests library within the session\n",
+        "import json #this is to call the json package. this has commands to parse the json and store it as a dict"
+      ],
+      "metadata": {
+        "id": "xdO9RBlQS1Ca"
+      },
+      "execution_count": 4,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "dbF2ouyzzxAu"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import requests #after the requests package is installed, we import the requests library within the session\n",
+        "import json #this is to call the json package. this has commands to parse the json and store it as a dict\n",
+        "\n",
+        "url = \"https://api.exchangerate.host/latest\"  #this is needed to pass the url to be accessed to an URL object\n",
+        "params = {\"base\":\"EUR\"}   #this is to create a dict called params and create a key:value pair within\n",
+        "\n",
+        "try:            #this is the block to run where api get call is made, response captured and stoed in data object\n",
+        "  response = requests.get(url,params=params,timeout=10) #this is used to make the get api call. requests.get will club url & params with timeout set at 10s\n",
+        "  response.raise_for_status() #this is to raise status error for 4xx or 5xx\n",
+        "  data = response.json()  #this is to capture n push the response json to object called data\n",
+        "  print(\"API call successful\")\n",
+        "  print(f\"Status code:{response.status_code}\")\n",
+        "\n",
+        "except requests.exceptions.ConnectionError: #to catch the connection error, this code block will run\n",
+        "  print(\"No internet\")\n",
+        "  data = None\n",
+        "\n",
+        "except requests.exceptions.Timeout:         #to catch the timeout error, this code block will run\n",
+        "  print(\"Timeout error\")\n",
+        "  data = None\n",
+        "\n",
+        "except requests.exceptions.HttpError as e:      #to catch the Http error, this code block will run\n",
+        "  print(f\"Http error: {e}\")\n",
+        "  data = None\n",
+        "\n",
+        "except requests.exceptions.RequestException as e:    #to catch any other unexpected error, this code block will run\n",
+        "  print(f\"unexpected error: {e}\")\n",
+        "  data = None\n",
+        "\n",
+        "\n",
+        "# Step 4: Parse JSON and print clean table\n",
+        "if data:\n",
+        "    # Safely get the 'rates' dictionary. If not present, default to an empty dict.\n",
+        "    exchange_rates = data.get(\"rates\", {})\n",
+        "    target_currencies = [\"USD\", \"GBP\", \"CHF\", \"NOK\", \"SEK\"]\n",
+        "\n",
+        "    print(f\"\\n{'='*35}\")\n",
+        "    print(f\"  Exchange Rates — Base: EUR\")\n",
+        "    print(f\"  Date: {data.get('date', 'N/A')}\")\n",
+        "    print(f\"{'='*35}\")\n",
+        "    print(f\"  {'Currency':<12} {'Rate':>10}\")\n",
+        "    print(f\"  {'-'*22}\")\n",
+        "\n",
+        "    for currency in target_currencies:\n",
+        "        # Use the corrected variable name 'exchange_rates'\n",
+        "        rate = exchange_rates.get(currency, \"N/A\")\n",
+        "        if rate != \"N/A\":\n",
+        "            print(f\"  {currency:<12} {rate:>10.4f}\")\n",
+        "        else:\n",
+        "            print(f\"  {currency:<12} {'Not found':>10}\")\n",
+        "\n",
+        "    print(f\"{'='*35}\")\n",
+        "\n",
+        "else:\n",
+        "    print(\"\\n⚠️  Skipping table — no data available\")\n",
+        "    print(\"Fallback rates (hardcoded as of May 2026):\")\n",
+        "    fallback = {\"USD\": 1.08, \"GBP\": 0.85, \"CHF\": 0.97, \"NOK\": 11.72, \"SEK\": 11.45}\n",
+        "    for k, v in fallback.items():\n",
+        "        print(f\"  {k}: {v}\")"
+      ],
+      "metadata": {
+        "id": "bGDlWN_aS9-E",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "249d5ceb-3966-4b8e-c094-f79a4ec088a5"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "API call successful\n",
+            "Status code:200\n",
+            "\n",
+            "===================================\n",
+            "  Exchange Rates — Base: EUR\n",
+            "  Date: N/A\n",
+            "===================================\n",
+            "  Currency           Rate\n",
+            "  ----------------------\n",
+            "  USD           Not found\n",
+            "  GBP           Not found\n",
+            "  CHF           Not found\n",
+            "  NOK           Not found\n",
+            "  SEK           Not found\n",
+            "===================================\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "bCIrIg8Qz2H6"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "YaeIIi_QzxoW"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "MRb3atKrzq49"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "YITvLQf2ziVp"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "zZHZfRXpzYmH"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}

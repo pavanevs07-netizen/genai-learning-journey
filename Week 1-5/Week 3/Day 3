@@ -1,0 +1,161 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMqVp0hpxLVeta2VjWJ8rSE",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/pavanevs07-netizen/genai-learning-journey/blob/main/Week%201-5/Week%203/Day%203\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from google.colab import userdata\n",
+        "\n",
+        "api_key = userdata.get('OPENAI_API_KEY')\n",
+        "\n",
+        "if api_key:\n",
+        "  print(\"Key Loaded = Yes\")\n",
+        "else:\n",
+        "  print(\"key Loaded = No - check secrets panel\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "u7KpVQ_1Y9b3",
+        "outputId": "c679648e-1401-4d6c-ba9d-b6377b16033a"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Key Loaded = Yes\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!pip install python-dotenv"
+      ],
+      "metadata": {
+        "id": "l0RaX4FYOUqO",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "2d1fc431-d7f0-453d-8c78-f7d5fa82f4ed"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Requirement already satisfied: python-dotenv in /usr/local/lib/python3.12/dist-packages (1.2.2)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import os\n",
+        "print(os.getcwd())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "QubEJc4IBjmP",
+        "outputId": "9c04460b-a1d3-4484-f5b7-cc2b0cd924b5"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "/content\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "xO7VVYbMCCHu"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "XSDPUs14CAf7"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "fAWl_4UYbVmG"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "bKf6BfPzZmYc"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "NWKtyZovZj5T"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "LUsIdjCrZiq4"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}

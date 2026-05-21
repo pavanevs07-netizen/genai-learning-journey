@@ -1,0 +1,481 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPF9JBdT/DunWyog4Rdz5uk",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/pavanevs07-netizen/genai-learning-journey/blob/main/Week%201-5/Week%204/Day%201\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from google.colab import drive\n",
+        "drive.mount('/gdrive')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "tDjeZMlzX2ql",
+        "outputId": "38219ebb-2b18-4197-f82a-252981f5ded2"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Mounted at /gdrive\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# what problems does pydantic solve\n",
+        "\n",
+        "# 1. data validation, type validation errors are handled.\n",
+        "# Example: if i create this function\n",
+        "\n",
+        "# def insert_db(name,age):\n",
+        "#   print(\"name\")\n",
+        "#   print(\"age\")\n",
+        "#   print(\"inserted in db\")\n",
+        "\n",
+        "# insert_db('pavan','30')\n",
+        "\n",
+        "# this writes the name n age to database. but here age is given as str rather than int. one way to prevent this is writing the code as below:\n",
+        "\n",
+        "# def insert_db(name:str,age:int):\n",
+        "#   print(\"name\")\n",
+        "#   print(\"age\")\n",
+        "#   print(\"inserted in db\")\n",
+        "\n",
+        "# insert_db('pavan',-30)\n",
+        "\n",
+        "# in this, we have given the type of the 2 objects as str and int. but still we can pass -ve int as value for age. again no way of validating this error as well. we can also write the logic as this\n",
+        "\n",
+        "# def insert_db(name,age):\n",
+        "\n",
+        "#   if type(name) == str and type(age)==int:\n",
+        "#     print(\"name\")\n",
+        "#     print(\"age\")\n",
+        "#     print(\"inserted into DB\")\n",
+        "#   else\n",
+        "#     raise Typeerror\n",
+        "\n",
+        "# so if you see, we are writing multiple lines of code to validate the input taken up the function, their type and also the values inputted.\n",
+        "\n",
+        "# The main problem with python here is the objects are dynamic meaning an object can be assigned values if diff type - str,int, float etc., while in c,c++,java objects are assigned a type during instanciation.\n",
+        "\n",
+        "# To solve this, we have the concept of pydantic.\n",
+        "\n",
+        "# What benefits pydantic provides:\n",
+        "# 1. it helps in data validation i.e., if you want to accept certain type of input or certain range of values, you dont have to write the code for this logic multiple times. instead you create a pydantic class which handles this.\n",
+        "\n",
+        "# How does pydantic doe this:\n",
+        "# 1. here we follow a 3 step process:\n",
+        "# Step 1: create a class in pydantic, indicating the type and values to be accepted. define the ideal schema for that class/model\n",
+        "# Step 2: instantiate the model/class with reference values to help it understand the inputs\n",
+        "# Step 3: pass the validated model object to all functions"
+      ],
+      "metadata": {
+        "id": "ljG_7Fj6eyLh"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!pip install pydantic"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "WR6JjZVcghph",
+        "outputId": "64c26897-e2ae-473f-bbe6-1e425d616983"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Requirement already satisfied: pydantic in /usr/local/lib/python3.12/dist-packages (2.12.3)\n",
+            "Requirement already satisfied: annotated-types>=0.6.0 in /usr/local/lib/python3.12/dist-packages (from pydantic) (0.7.0)\n",
+            "Requirement already satisfied: pydantic-core==2.41.4 in /usr/local/lib/python3.12/dist-packages (from pydantic) (2.41.4)\n",
+            "Requirement already satisfied: typing-extensions>=4.14.1 in /usr/local/lib/python3.12/dist-packages (from pydantic) (4.15.0)\n",
+            "Requirement already satisfied: typing-inspection>=0.4.2 in /usr/local/lib/python3.12/dist-packages (from pydantic) (0.4.2)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#example 1\n",
+        "from pydantic import BaseModel\n",
+        "\n",
+        "class CL_patient(BaseModel):          # step 1: created a pydantic model\n",
+        "  name: str\n",
+        "  age: int\n",
+        "\n",
+        "Patient_dict = {'name':'pavan', 'age':30}       # step 2: a sample dict to pass the data\n",
+        "\n",
+        "Ob_patient1 = CL_patient(**Patient_dict)          # step 3: creating an object called OB_patient of class CL_patient and pass the dict Patient_dict created + used ** to unpack the dict\n",
+        "\n",
+        "def insert_db(patient:CL_patient):                #step 4: created a patient object within the calls CL_patient which can be used within the function\n",
+        "  print(patient.name)\n",
+        "  print(patient.age)\n",
+        "  print(\"insert successful\")\n",
+        "\n",
+        "insert_db(Ob_patient1)                          #step 5: pass the object that we have pass the dict into. give a diff name for this object thna the one used in function\n",
+        "\n",
+        "\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "yTZl7GLPgjwK",
+        "outputId": "719e3825-3446-4003-84a1-f783110e4680"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "pavan\n",
+            "30\n",
+            "insert successful\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import importlib.util, sys\n",
+        "\n",
+        "spec = importlib.util.spec_from_file_location(\n",
+        "    \"llm_client\",\n",
+        "    \"/gdrive/My Drive/Colab Notebooks/GenAI Learning Journey/Intelligence/llm_client.py\"\n",
+        ")\n",
+        "llm_client_module = importlib.util.module_from_spec(spec)\n",
+        "spec.loader.exec_module(llm_client_module)\n",
+        "LLMClient = llm_client_module.LLMClient\n",
+        "\n",
+        "print(\"✅ LLMClient loaded directly from file\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "yoSwZNZTZcc1",
+        "outputId": "634808ce-2835-4b70-c864-495b2bb39973"
+      },
+      "execution_count": 13,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "✅ LLMClient loaded directly from file\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import os, shutil\n",
+        "\n",
+        "cache = '/gdrive/My Drive/Colab Notebooks/GenAI Learning Journey/Intelligence/__pycache__'\n",
+        "if os.path.exists(cache):\n",
+        "    shutil.rmtree(cache)\n",
+        "    print(\"✅ Cache cleared\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "cHt1VUz5ZzzR",
+        "outputId": "8e9f8ff7-140b-4f58-f5f3-f2c20fee5937"
+      },
+      "execution_count": 12,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "✅ Cache cleared\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from google.colab import userdata\n",
+        "import os\n",
+        "\n",
+        "os.environ[\"OPENAI_API_KEY\"] = userdata.get('OPENAI_API_KEY')\n",
+        "print(\"✅ Key loaded:\", os.environ[\"OPENAI_API_KEY\"][:8], \"...\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "glgeK_nQZ4SK",
+        "outputId": "63f7c894-4d33-4105-b1f0-0eee7b54c3eb"
+      },
+      "execution_count": 18,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "✅ Key loaded: sk-proj- ...\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# complaint_schema.py\n",
+        "# Central data contract for the complaint intelligence platform\n",
+        "# Every module validates against this schema\n",
+        "\n",
+        "import os\n",
+        "import re\n",
+        "import json\n",
+        "import importlib.util\n",
+        "from pydantic import BaseModel, Field, field_validator, model_validator\n",
+        "from typing import Literal, Optional\n",
+        "from uuid import UUID, uuid4\n",
+        "from datetime import datetime\n",
+        "\n",
+        "# --- LLM Client Import ---\n",
+        "# Uses importlib to load directly from file path — avoids sys.path issues with spaces in Drive path\n",
+        "_llm_path = '/gdrive/My Drive/Colab Notebooks/GenAI Learning Journey/Intelligence/llm_client.py'\n",
+        "_spec = importlib.util.spec_from_file_location(\"llm_client\", _llm_path)\n",
+        "_llm_module = importlib.util.module_from_spec(_spec)\n",
+        "_spec.loader.exec_module(_llm_module)\n",
+        "LLMClient = _llm_module.LLMClient\n",
+        "\n",
+        "\n",
+        "# ─────────────────────────────────────────────\n",
+        "# SCHEMA — Central Data Contract\n",
+        "# ─────────────────────────────────────────────\n",
+        "\n",
+        "class Complaint(BaseModel):\n",
+        "\n",
+        "    # --- Core Identity ---\n",
+        "    id: UUID = Field(default_factory=uuid4)\n",
+        "\n",
+        "    # --- Complaint Content ---\n",
+        "    text: str = Field(min_length=10, max_length=3000)\n",
+        "\n",
+        "    # --- Classification ---\n",
+        "    vertical: Literal['banking', 'healthcare', 'saas', 'insurance']\n",
+        "    channel: Literal['email', 'phone', 'chat', 'social', 'web']\n",
+        "    category: Optional[str] = None\n",
+        "    urgency: Optional[int] = Field(default=None, ge=1, le=5)\n",
+        "\n",
+        "    # --- Metadata ---\n",
+        "    received_at: datetime = Field(default_factory=datetime.now)\n",
+        "    language: str = 'en'\n",
+        "    pii_redacted: bool = False\n",
+        "    escalate: bool = False\n",
+        "    regulatory_flags: list[str] = []\n",
+        "\n",
+        "\n",
+        "    # --- Validator 1: Block raw IBANs in complaint text ---\n",
+        "    @field_validator('text')\n",
+        "    @classmethod\n",
+        "    def text_must_not_contain_iban(cls, v):\n",
+        "        iban_pattern = r'GB\\d{2}[A-Z]{4}\\d{14}'\n",
+        "        if re.search(iban_pattern, v):\n",
+        "            raise ValueError(\"Complaint text must not contain raw IBAN numbers. Redact before submission.\")\n",
+        "        return v\n",
+        "\n",
+        "\n",
+        "    # --- Validator 2: Urgency requires category ---\n",
+        "    @model_validator(mode='after')\n",
+        "    def urgency_requires_category(self):\n",
+        "        if self.urgency is not None and self.category is None:\n",
+        "            raise ValueError(\"urgency can only be set if category is also provided.\")\n",
+        "        return self\n",
+        "\n",
+        "\n",
+        "# ─────────────────────────────────────────────\n",
+        "# FACTORY — Generates Synthetic Complaints via LLM\n",
+        "# ─────────────────────────────────────────────\n",
+        "\n",
+        "def complaint_factory(n: int, vertical: str) -> list[Complaint]:\n",
+        "    \"\"\"\n",
+        "    Generates n synthetic realistic complaints for a given vertical.\n",
+        "    Uses LLMClient from:\n",
+        "    /gdrive/My Drive/Colab Notebooks/GenAI Learning Journey/Intelligence/llm_client.py\n",
+        "    \"\"\"\n",
+        "\n",
+        "    client = LLMClient()\n",
+        "\n",
+        "    system_prompt = f\"Generate realistic {vertical} customer complaints in JSON format\"\n",
+        "\n",
+        "    user_prompt = f\"\"\"Generate {n} realistic {vertical} customer complaints.\n",
+        "Return ONLY a JSON array with no explanation, no markdown, no backticks.\n",
+        "Each object must have exactly these keys:\n",
+        "- text (string, realistic complaint, 20-200 words)\n",
+        "- channel (one of: email, phone, chat, social, web)\n",
+        "- category (string, e.g. 'billing issue', 'service outage', 'claim delay')\n",
+        "- urgency (integer 1-5)\n",
+        "- language (default 'en')\n",
+        "\n",
+        "Example:\n",
+        "[\n",
+        "  {{\n",
+        "    \"text\": \"I have been waiting 3 weeks for my insurance claim to be processed with no update.\",\n",
+        "    \"channel\": \"email\",\n",
+        "    \"category\": \"claim delay\",\n",
+        "    \"urgency\": 4,\n",
+        "    \"language\": \"en\"\n",
+        "  }}\n",
+        "]\"\"\"\n",
+        "\n",
+        "    # Call LLMClient.generate() — returns dict with 'response_text', 'tokens_used', 'cost_usd', 'latency_ms'\n",
+        "    result = client.generate(\n",
+        "        system_prompt=system_prompt,\n",
+        "        user_message=user_prompt,\n",
+        "        temperature=0.7,      # higher temp = more varied synthetic complaints\n",
+        "        max_tokens=1000       # n complaints need more tokens than a single classification\n",
+        "    )\n",
+        "\n",
+        "    # Extract the actual text from the response dict\n",
+        "    raw = result[\"response_text\"]\n",
+        "\n",
+        "    # Strip any accidental markdown fences the LLM might add\n",
+        "    clean = raw.strip().replace(\"```json\", \"\").replace(\"```\", \"\").strip()\n",
+        "\n",
+        "    # Parse JSON response\n",
+        "    complaints_data = json.loads(clean)\n",
+        "\n",
+        "    # Build and validate Complaint objects\n",
+        "    complaints = []\n",
+        "    for item in complaints_data:\n",
+        "        complaint = Complaint(\n",
+        "            text=item['text'],\n",
+        "            vertical=vertical,\n",
+        "            channel=item['channel'],\n",
+        "            category=item.get('category'),\n",
+        "            urgency=item.get('urgency'),\n",
+        "            language=item.get('language', 'en')\n",
+        "        )\n",
+        "        complaints.append(complaint)\n",
+        "\n",
+        "    return complaints\n",
+        "\n",
+        "\n",
+        "# ─────────────────────────────────────────────\n",
+        "# QUICK TEST BLOCK\n",
+        "# ─────────────────────────────────────────────\n",
+        "\n",
+        "if __name__ == \"__main__\":\n",
+        "\n",
+        "    # Test 1: Valid complaint\n",
+        "    c1 = Complaint(\n",
+        "        text=\"My claim has been pending for 3 weeks with no update from your team.\",\n",
+        "        vertical=\"insurance\",\n",
+        "        channel=\"email\",\n",
+        "        category=\"claim delay\",\n",
+        "        urgency=4\n",
+        "    )\n",
+        "    print(\"✅ Valid complaint created:\", c1.id)\n",
+        "\n",
+        "    # Test 2: IBAN in text — should raise error\n",
+        "    try:\n",
+        "        c2 = Complaint(\n",
+        "            text=\"My account GB94BARC10201530093459 was debited incorrectly.\",\n",
+        "            vertical=\"banking\",\n",
+        "            channel=\"chat\"\n",
+        "        )\n",
+        "    except Exception as e:\n",
+        "        print(\"🚫 IBAN validator caught:\", e)\n",
+        "\n",
+        "    # Test 3: Urgency without category — should raise error\n",
+        "    try:\n",
+        "        c3 = Complaint(\n",
+        "            text=\"The app keeps crashing every time I try to login.\",\n",
+        "            vertical=\"saas\",\n",
+        "            channel=\"web\",\n",
+        "            urgency=5\n",
+        "        )\n",
+        "    except Exception as e:\n",
+        "        print(\"🚫 Urgency validator caught:\", e)\n",
+        "\n",
+        "    # Test 4: Factory via LLM\n",
+        "    print(\"\\n⏳ Generating complaints via LLM...\")\n",
+        "    batch = complaint_factory(n=3, vertical=\"healthcare\")\n",
+        "    print(f\"✅ Factory generated {len(batch)} complaints:\")\n",
+        "    for c in batch:\n",
+        "        print(f\"  - [{c.vertical}] [{c.channel}] urgency={c.urgency} | {c.text[:60]}...\")"
+      ],
+      "metadata": {
+        "id": "2-xsmd9NjRdt",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "859b671c-76fd-4428-9708-14d05ce7355b"
+      },
+      "execution_count": 19,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "✅ Valid complaint created: ac7373ee-cdc8-4b84-a60d-6a0ffd6e7ba4\n",
+            "🚫 IBAN validator caught: 1 validation error for Complaint\n",
+            "text\n",
+            "  Value error, Complaint text must not contain raw IBAN numbers. Redact before submission. [type=value_error, input_value='My account GB94BARC10201...as debited incorrectly.', input_type=str]\n",
+            "    For further information visit https://errors.pydantic.dev/2.12/v/value_error\n",
+            "🚫 Urgency validator caught: 1 validation error for Complaint\n",
+            "  Value error, urgency can only be set if category is also provided. [type=value_error, input_value={'text': 'The app keeps c...l': 'web', 'urgency': 5}, input_type=dict]\n",
+            "    For further information visit https://errors.pydantic.dev/2.12/v/value_error\n",
+            "\n",
+            "⏳ Generating complaints via LLM...\n",
+            "✅ Factory generated 3 complaints:\n",
+            "  - [healthcare] [phone] urgency=3 | I visited the clinic last week for a scheduled appointment, ...\n",
+            "  - [healthcare] [email] urgency=5 | I received my medical bill today and it includes charges for...\n",
+            "  - [healthcare] [web] urgency=4 | I attempted to schedule a follow-up appointment through your...\n"
+          ]
+        }
+      ]
+    }
+  ]
+}

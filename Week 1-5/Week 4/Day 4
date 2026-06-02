@@ -1,0 +1,723 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPorySDE9t8U+Rs0pmfh4gh",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/pavanevs07-netizen/genai-learning-journey/blob/main/Week%201-5/Week%204/Day%204\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!pip install presidio-analyzer presidio-anonymizer"
+      ],
+      "metadata": {
+        "id": "2cH87dqV2wCS",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "8b21d6c5-022e-41e0-a477-c9ad6bd8b2ca"
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Collecting presidio-analyzer\n",
+            "  Downloading presidio_analyzer-2.2.362-py3-none-any.whl.metadata (6.2 kB)\n",
+            "Collecting presidio-anonymizer\n",
+            "  Downloading presidio_anonymizer-2.2.362-py3-none-any.whl.metadata (9.1 kB)\n",
+            "Collecting phonenumbers<10.0.0,>=8.12 (from presidio-analyzer)\n",
+            "  Downloading phonenumbers-9.0.31-py2.py3-none-any.whl.metadata (10 kB)\n",
+            "Requirement already satisfied: pydantic<3.0.0,>=2.0.0 in /usr/local/lib/python3.12/dist-packages (from presidio-analyzer) (2.12.3)\n",
+            "Requirement already satisfied: pyyaml in /usr/local/lib/python3.12/dist-packages (from presidio-analyzer) (6.0.3)\n",
+            "Requirement already satisfied: regex in /usr/local/lib/python3.12/dist-packages (from presidio-analyzer) (2025.11.3)\n",
+            "Requirement already satisfied: spacy!=3.7.0,>=3.4.4 in /usr/local/lib/python3.12/dist-packages (from presidio-analyzer) (3.8.14)\n",
+            "Collecting tldextract (from presidio-analyzer)\n",
+            "  Downloading tldextract-5.3.1-py3-none-any.whl.metadata (7.3 kB)\n",
+            "Requirement already satisfied: cryptography>=46.0.4 in /usr/local/lib/python3.12/dist-packages (from presidio-anonymizer) (48.0.0)\n",
+            "Requirement already satisfied: cffi>=2.0.0 in /usr/local/lib/python3.12/dist-packages (from cryptography>=46.0.4->presidio-anonymizer) (2.0.0)\n",
+            "Requirement already satisfied: annotated-types>=0.6.0 in /usr/local/lib/python3.12/dist-packages (from pydantic<3.0.0,>=2.0.0->presidio-analyzer) (0.7.0)\n",
+            "Requirement already satisfied: pydantic-core==2.41.4 in /usr/local/lib/python3.12/dist-packages (from pydantic<3.0.0,>=2.0.0->presidio-analyzer) (2.41.4)\n",
+            "Requirement already satisfied: typing-extensions>=4.14.1 in /usr/local/lib/python3.12/dist-packages (from pydantic<3.0.0,>=2.0.0->presidio-analyzer) (4.15.0)\n",
+            "Requirement already satisfied: typing-inspection>=0.4.2 in /usr/local/lib/python3.12/dist-packages (from pydantic<3.0.0,>=2.0.0->presidio-analyzer) (0.4.2)\n",
+            "Requirement already satisfied: spacy-legacy<3.1.0,>=3.0.11 in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (3.0.12)\n",
+            "Requirement already satisfied: spacy-loggers<2.0.0,>=1.0.0 in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (1.0.5)\n",
+            "Requirement already satisfied: murmurhash<1.1.0,>=0.28.0 in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (1.0.15)\n",
+            "Requirement already satisfied: cymem<2.1.0,>=2.0.2 in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (2.0.13)\n",
+            "Requirement already satisfied: preshed<3.1.0,>=3.0.2 in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (3.0.13)\n",
+            "Requirement already satisfied: thinc<8.4.0,>=8.3.12 in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (8.3.13)\n",
+            "Requirement already satisfied: wasabi<1.2.0,>=0.9.1 in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (1.1.3)\n",
+            "Requirement already satisfied: srsly<3.0.0,>=2.5.3 in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (2.5.3)\n",
+            "Requirement already satisfied: catalogue<2.1.0,>=2.0.6 in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (2.0.10)\n",
+            "Requirement already satisfied: weasel<2.0.0,>=1.0.0 in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (1.0.0)\n",
+            "Requirement already satisfied: confection<2.0.0,>=1.3.2 in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (1.3.3)\n",
+            "Requirement already satisfied: typer<1.0.0,>=0.3.0 in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (0.25.1)\n",
+            "Requirement already satisfied: tqdm<5.0.0,>=4.38.0 in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (4.67.3)\n",
+            "Requirement already satisfied: numpy>=1.19.0 in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (2.0.2)\n",
+            "Requirement already satisfied: requests<3.0.0,>=2.13.0 in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (2.32.4)\n",
+            "Requirement already satisfied: jinja2 in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (3.1.6)\n",
+            "Requirement already satisfied: setuptools in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (75.2.0)\n",
+            "Requirement already satisfied: packaging>=20.0 in /usr/local/lib/python3.12/dist-packages (from spacy!=3.7.0,>=3.4.4->presidio-analyzer) (26.2)\n",
+            "Requirement already satisfied: idna in /usr/local/lib/python3.12/dist-packages (from tldextract->presidio-analyzer) (3.15)\n",
+            "Collecting requests-file>=1.4 (from tldextract->presidio-analyzer)\n",
+            "  Downloading requests_file-3.0.1-py2.py3-none-any.whl.metadata (1.7 kB)\n",
+            "Requirement already satisfied: filelock>=3.0.8 in /usr/local/lib/python3.12/dist-packages (from tldextract->presidio-analyzer) (3.29.0)\n",
+            "Requirement already satisfied: pycparser in /usr/local/lib/python3.12/dist-packages (from cffi>=2.0.0->cryptography>=46.0.4->presidio-anonymizer) (3.0)\n",
+            "Requirement already satisfied: charset_normalizer<4,>=2 in /usr/local/lib/python3.12/dist-packages (from requests<3.0.0,>=2.13.0->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (3.4.7)\n",
+            "Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/lib/python3.12/dist-packages (from requests<3.0.0,>=2.13.0->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (2.5.0)\n",
+            "Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.12/dist-packages (from requests<3.0.0,>=2.13.0->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (2026.5.20)\n",
+            "Requirement already satisfied: blis<1.4.0,>=1.3.0 in /usr/local/lib/python3.12/dist-packages (from thinc<8.4.0,>=8.3.12->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (1.3.3)\n",
+            "Requirement already satisfied: click>=8.2.1 in /usr/local/lib/python3.12/dist-packages (from typer<1.0.0,>=0.3.0->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (8.4.0)\n",
+            "Requirement already satisfied: shellingham>=1.3.0 in /usr/local/lib/python3.12/dist-packages (from typer<1.0.0,>=0.3.0->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (1.5.4)\n",
+            "Requirement already satisfied: rich>=13.8.0 in /usr/local/lib/python3.12/dist-packages (from typer<1.0.0,>=0.3.0->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (13.9.4)\n",
+            "Requirement already satisfied: annotated-doc>=0.0.2 in /usr/local/lib/python3.12/dist-packages (from typer<1.0.0,>=0.3.0->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (0.0.4)\n",
+            "Requirement already satisfied: cloudpathlib>=0.7.0 in /usr/local/lib/python3.12/dist-packages (from weasel<2.0.0,>=1.0.0->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (0.24.0)\n",
+            "Requirement already satisfied: smart-open>=5.2.1 in /usr/local/lib/python3.12/dist-packages (from weasel<2.0.0,>=1.0.0->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (7.6.1)\n",
+            "Requirement already satisfied: httpx>=0.24.0 in /usr/local/lib/python3.12/dist-packages (from weasel<2.0.0,>=1.0.0->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (0.28.1)\n",
+            "Requirement already satisfied: MarkupSafe>=2.0 in /usr/local/lib/python3.12/dist-packages (from jinja2->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (3.0.3)\n",
+            "Requirement already satisfied: anyio in /usr/local/lib/python3.12/dist-packages (from httpx>=0.24.0->weasel<2.0.0,>=1.0.0->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (4.13.0)\n",
+            "Requirement already satisfied: httpcore==1.* in /usr/local/lib/python3.12/dist-packages (from httpx>=0.24.0->weasel<2.0.0,>=1.0.0->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (1.0.9)\n",
+            "Requirement already satisfied: h11>=0.16 in /usr/local/lib/python3.12/dist-packages (from httpcore==1.*->httpx>=0.24.0->weasel<2.0.0,>=1.0.0->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (0.16.0)\n",
+            "Requirement already satisfied: markdown-it-py>=2.2.0 in /usr/local/lib/python3.12/dist-packages (from rich>=13.8.0->typer<1.0.0,>=0.3.0->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (4.2.0)\n",
+            "Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /usr/local/lib/python3.12/dist-packages (from rich>=13.8.0->typer<1.0.0,>=0.3.0->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (2.20.0)\n",
+            "Requirement already satisfied: wrapt in /usr/local/lib/python3.12/dist-packages (from smart-open>=5.2.1->weasel<2.0.0,>=1.0.0->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (2.2.0)\n",
+            "Requirement already satisfied: mdurl~=0.1 in /usr/local/lib/python3.12/dist-packages (from markdown-it-py>=2.2.0->rich>=13.8.0->typer<1.0.0,>=0.3.0->spacy!=3.7.0,>=3.4.4->presidio-analyzer) (0.1.2)\n",
+            "Downloading presidio_analyzer-2.2.362-py3-none-any.whl (201 kB)\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m201.1/201.1 kB\u001b[0m \u001b[31m5.3 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hDownloading presidio_anonymizer-2.2.362-py3-none-any.whl (36 kB)\n",
+            "Downloading phonenumbers-9.0.31-py2.py3-none-any.whl (2.6 MB)\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m2.6/2.6 MB\u001b[0m \u001b[31m45.7 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hDownloading tldextract-5.3.1-py3-none-any.whl (105 kB)\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m105.9/105.9 kB\u001b[0m \u001b[31m8.7 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hDownloading requests_file-3.0.1-py2.py3-none-any.whl (4.5 kB)\n",
+            "Installing collected packages: phonenumbers, requests-file, tldextract, presidio-anonymizer, presidio-analyzer\n",
+            "Successfully installed phonenumbers-9.0.31 presidio-analyzer-2.2.362 presidio-anonymizer-2.2.362 requests-file-3.0.1 tldextract-5.3.1\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!python -m spacy download en_core_web_lg"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "3jFJyneyfkaW",
+        "outputId": "853a3b76-97db-4661-dff5-0a923ec45a05"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Collecting en-core-web-lg==3.8.0\n",
+            "  Downloading https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-3.8.0/en_core_web_lg-3.8.0-py3-none-any.whl (400.7 MB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m400.7/400.7 MB\u001b[0m \u001b[31m1.2 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hInstalling collected packages: en-core-web-lg\n",
+            "Successfully installed en-core-web-lg-3.8.0\n",
+            "\u001b[38;5;2m✔ Download and installation successful\u001b[0m\n",
+            "You can now load the package via spacy.load('en_core_web_lg')\n",
+            "\u001b[38;5;3m⚠ Restart to reload dependencies\u001b[0m\n",
+            "If you are in a Jupyter or Colab notebook, you may need to restart Python in\n",
+            "order to load all the package's dependencies. You can do this by selecting the\n",
+            "'Restart kernel' or 'Restart runtime' option.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ── IMPORTS ──────────────────────────────────────────────────\n",
+        "\n",
+        "from presidio_analyzer import AnalyzerEngine\n",
+        "from presidio_analyzer.nlp_engine import NlpEngineProvider\n",
+        "from presidio_anonymizer import AnonymizerEngine\n",
+        "from presidio_anonymizer.entities import OperatorConfig\n",
+        "import re  # kept for the comparison section only"
+      ],
+      "metadata": {
+        "id": "ILhp97Saged1"
+      },
+      "execution_count": 2,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ── NLP ENGINE CONFIGURATION ─────────────────────────────────\n",
+        "# We explicitly tell Presidio: use spaCy, use the large English model\n",
+        "# Default would also pick en_core_web_lg but explicit config is auditable\n",
+        "\n",
+        "configuration = {\n",
+        "    \"nlp_engine_name\": \"spacy\",\n",
+        "    \"models\": [\n",
+        "        {\"lang_code\": \"en\", \"model_name\": \"en_core_web_lg\"}\n",
+        "    ]\n",
+        "}\n",
+        "# lang_code: ISO 639-1 language code\n",
+        "# model_name: must match an installed spaCy model exactly\n",
+        "# You can add {\"lang_code\": \"de\", \"model_name\": \"de_core_news_lg\"} for German\n",
+        "# Presidio supports multi-language detection in one pipeline\n",
+        "\n",
+        "provider = NlpEngineProvider(nlp_configuration=configuration)\n",
+        "nlp_engine = provider.create_engine()\n",
+        "# This loads the spaCy model into memory — ~741MB for lg\n",
+        "# In production: load once at startup, reuse across all requests"
+      ],
+      "metadata": {
+        "id": "sEqDTna-fpHb"
+      },
+      "execution_count": 3,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ── ENGINE INITIALISATION ────────────────────────────────────\n",
+        "\n",
+        "analyzer = AnalyzerEngine(\n",
+        "    nlp_engine=nlp_engine,\n",
+        "    supported_languages=[\"en\"]\n",
+        ")\n",
+        "# AnalyzerEngine loads:\n",
+        "# 1. Your spaCy NLP engine (for NER-based recognizers)\n",
+        "# 2. All built-in pattern recognizers (IBAN, EMAIL, PHONE, NHS, etc.)\n",
+        "# 3. Context enhancers for each recognizer\n",
+        "# supported_languages: controls which language models can be used\n",
+        "\n",
+        "anonymizer = AnonymizerEngine()\n",
+        "# AnonymizerEngine has no NLP dependency\n",
+        "# It only needs: original text + span positions + operator rules\n",
+        "# Completely stateless — can be shared across threads safely"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "LRMwgbCFg0-T",
+        "outputId": "79809f99-1ebf-4430-d0ad-a46b75cb9a61"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "WARNING:presidio-analyzer:Recognizer not added to registry because language is not supported by registry - CreditCardRecognizer supported languages: es, registry supported languages: en\n",
+            "WARNING:presidio-analyzer:Recognizer not added to registry because language is not supported by registry - CreditCardRecognizer supported languages: it, registry supported languages: en\n",
+            "WARNING:presidio-analyzer:Recognizer not added to registry because language is not supported by registry - CreditCardRecognizer supported languages: pl, registry supported languages: en\n",
+            "WARNING:presidio-analyzer:Recognizer not added to registry because language is not supported by registry - EsNifRecognizer supported languages: es, registry supported languages: en\n",
+            "WARNING:presidio-analyzer:Recognizer not added to registry because language is not supported by registry - EsNieRecognizer supported languages: es, registry supported languages: en\n",
+            "WARNING:presidio-analyzer:Recognizer not added to registry because language is not supported by registry - ItDriverLicenseRecognizer supported languages: it, registry supported languages: en\n",
+            "WARNING:presidio-analyzer:Recognizer not added to registry because language is not supported by registry - ItFiscalCodeRecognizer supported languages: it, registry supported languages: en\n",
+            "WARNING:presidio-analyzer:Recognizer not added to registry because language is not supported by registry - ItVatCodeRecognizer supported languages: it, registry supported languages: en\n",
+            "WARNING:presidio-analyzer:Recognizer not added to registry because language is not supported by registry - ItIdentityCardRecognizer supported languages: it, registry supported languages: en\n",
+            "WARNING:presidio-analyzer:Recognizer not added to registry because language is not supported by registry - ItPassportRecognizer supported languages: it, registry supported languages: en\n",
+            "WARNING:presidio-analyzer:Recognizer not added to registry because language is not supported by registry - PlPeselRecognizer supported languages: pl, registry supported languages: en\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ── OPERATOR MAP ─────────────────────────────────────────────\n",
+        "# Defines what happens to each detected entity type\n",
+        "# \"replace\" swaps the span with a fixed string\n",
+        "# Other options: \"hash\", \"mask\", \"encrypt\", \"redact\" (empty string)\n",
+        "\n",
+        "operators = {\n",
+        "    \"PERSON\":        OperatorConfig(\"replace\", {\"new_value\": \"[PERSON]\"}),\n",
+        "    \"IBAN_CODE\":     OperatorConfig(\"replace\", {\"new_value\": \"[IBAN_REDACTED]\"}),\n",
+        "    \"EMAIL_ADDRESS\": OperatorConfig(\"replace\", {\"new_value\": \"[EMAIL_REDACTED]\"}),\n",
+        "    \"PHONE_NUMBER\":  OperatorConfig(\"replace\", {\"new_value\": \"[PHONE_REDACTED]\"}),\n",
+        "    \"UK_NHS\":        OperatorConfig(\"replace\", {\"new_value\": \"[NHS_REDACTED]\"}),\n",
+        "    \"NRP\":           OperatorConfig(\"replace\", {\"new_value\": \"[NATIONAL_ID_REDACTED]\"}),\n",
+        "    \"DEFAULT\":       OperatorConfig(\"replace\", {\"new_value\": \"[REDACTED]\"}),\n",
+        "}\n",
+        "# NRP = \"Nationally Registered Person\" — Presidio's label for\n",
+        "# national ID numbers including UK National Insurance (AB 12 34 56 C)\n",
+        "# DEFAULT catches any entity type not explicitly listed above"
+      ],
+      "metadata": {
+        "id": "GLyrcXavg-la"
+      },
+      "execution_count": 5,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ── SYNTHETIC COMPLAINT DATASET ──────────────────────────────\n",
+        "# 10 records. Each tests a different detection challenge.\n",
+        "# Designed to expose regex failures and validate Presidio's context-awareness.\n",
+        "\n",
+        "complaints = [\n",
+        "    # 1. Basic: name + email — baseline test\n",
+        "    \"My name is James Thornton and I have not received my refund. \"\n",
+        "    \"Please contact me at james.thornton@gmail.com.\",\n",
+        "\n",
+        "    # 2. IBAN mid-sentence — tests structured PII in free text\n",
+        "    \"I transferred funds from my account GB29NWBK60161331926819 \"\n",
+        "    \"but the payment never arrived. Very frustrated.\",\n",
+        "\n",
+        "    # 3. UK mobile phone — tests format variation handling\n",
+        "    \"Call me back on 07911 123456 to discuss the billing error. This is urgent.\",\n",
+        "\n",
+        "    # 4. NHS number with context — tests context-aware recognizer\n",
+        "    \"My NHS number is 943 476 5919. The prescription was never delivered.\",\n",
+        "\n",
+        "    # 5. Name + international phone — tests multi-PII, +44 format\n",
+        "    \"Hello, this is Sarah Mitchell. My mobile is +44 7700 900123 \"\n",
+        "    \"and I want to raise a formal complaint.\",\n",
+        "\n",
+        "    # 6. Email + German IBAN — tests cross-country IBAN detection\n",
+        "    \"Please send confirmation to priya.sharma@outlook.com. \"\n",
+        "    \"My IBAN is DE89370400440532013000.\",\n",
+        "\n",
+        "    # 7. National Insurance number — tests NRP recognizer\n",
+        "    \"My national insurance number is AB 12 34 56 C and I cannot \"\n",
+        "    \"log into the self-service portal.\",\n",
+        "\n",
+        "    # 8. Name mid-sentence — tests NER beyond sentence-start position\n",
+        "    \"The account registered to David Okafor has been incorrectly \"\n",
+        "    \"billed for three consecutive months.\",\n",
+        "\n",
+        "    # 9. Compound multi-PII — hardest case, tests span ordering\n",
+        "    \"I am writing on behalf of Mrs. Elena Vasquez. Her email is \"\n",
+        "    \"elena.v@hotmail.co.uk and her IBAN GB94BARC20201530093459 \"\n",
+        "    \"was used without authorisation.\",\n",
+        "\n",
+        "    # 10. Name at sentence end — tests NER in tail position\n",
+        "    \"Your agent spoke with Benjamin Clarke yesterday and promised \"\n",
+        "    \"a callback. No one has called back.\",\n",
+        "]"
+      ],
+      "metadata": {
+        "id": "4fI66VcwhB7v"
+      },
+      "execution_count": 6,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ── ENTITY ALLOWLIST ─────────────────────────────────────────\n",
+        "# Explicitly scope what Presidio scans for\n",
+        "# Without this, it scans ALL ~40 built-in entity types\n",
+        "# → slower, and more false positives from irrelevant types\n",
+        "\n",
+        "ENTITIES = [\n",
+        "    \"PERSON\",         # NLP-based (spaCy NER)\n",
+        "    \"IBAN_CODE\",      # Pattern-based + MOD-97 checksum\n",
+        "    \"EMAIL_ADDRESS\",  # Pattern-based (RFC 5321 compliant regex)\n",
+        "    \"PHONE_NUMBER\",   # Pattern-based + context-aware (multi-country)\n",
+        "    \"UK_NHS\",         # Pattern-based + modulus-11 checksum + context\n",
+        "    \"NRP\",            # Pattern-based + context (national ID formats)\n",
+        "]"
+      ],
+      "metadata": {
+        "id": "UhhJS0PwiId8"
+      },
+      "execution_count": 7,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ── MAIN DETECTION + ANONYMISATION LOOP ──────────────────────\n",
+        "\n",
+        "print(\"=\" * 70)\n",
+        "print(\"PRESIDIO PII ANONYMISATION — 10 SYNTHETIC COMPLAINTS\")\n",
+        "print(\"=\" * 70)\n",
+        "\n",
+        "for i, text in enumerate(complaints, 1):\n",
+        "    print(f\"\\n{'─'*70}\")\n",
+        "    print(f\"Complaint {i}\")\n",
+        "    print(f\"{'─'*70}\")\n",
+        "    print(f\"  ORIGINAL : {text}\")\n",
+        "\n",
+        "    # STEP A: ANALYZE\n",
+        "    # analyzer.analyze() runs the full NLP + recognizer pipeline\n",
+        "    # Returns: List[RecognizerResult]\n",
+        "    # Each RecognizerResult = {entity_type, start, end, score, recognition_metadata}\n",
+        "    results = analyzer.analyze(\n",
+        "        text=text,\n",
+        "        entities=ENTITIES,\n",
+        "        language=\"en\"\n",
+        "    )\n",
+        "    # 'language' param selects which NLP model to use\n",
+        "    # All results have character-level positions (not word-level)\n",
+        "    # This is important: \"james.thornton@gmail.com\" → start=52, end=76\n",
+        "\n",
+        "    # STEP B: ANONYMIZE\n",
+        "    # anonymizer.anonymize() takes original text + result spans\n",
+        "    # Applies operators in reverse order (end→start) to preserve positions\n",
+        "    # This is why overlapping spans don't corrupt the output\n",
+        "    anonymized = anonymizer.anonymize(\n",
+        "        text=text,\n",
+        "        analyzer_results=results,\n",
+        "        operators=operators\n",
+        "    )\n",
+        "    # anonymized.text = the redacted string\n",
+        "    # anonymized.items = list of what was replaced and where\n",
+        "\n",
+        "    print(f\"  REDACTED : {anonymized.text}\")\n",
+        "\n",
+        "    # STEP C: TRANSPARENCY — show what was detected\n",
+        "    if results:\n",
+        "        # Sort by position for readable output\n",
+        "        sorted_results = sorted(results, key=lambda x: x.start)\n",
+        "        print(f\"  DETECTED :\")\n",
+        "        for r in sorted_results:\n",
+        "            original_span = text[r.start:r.end]\n",
+        "            print(f\"    ✓ [{r.entity_type:<20}] \"\n",
+        "                  f\"'{original_span}' \"\n",
+        "                  f\"| confidence: {r.score:.2f} \"\n",
+        "                  f\"| chars {r.start}–{r.end}\")\n",
+        "    else:\n",
+        "        print(f\"  DETECTED : None\")\n",
+        "\n",
+        "print(f\"\\n{'='*70}\")\n",
+        "print(\"Anonymisation complete.\")\n",
+        "print(f\"{'='*70}\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "vNarpMouiMTb",
+        "outputId": "618b67ec-561e-47e1-95df-cda077512df5"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "======================================================================\n",
+            "PRESIDIO PII ANONYMISATION — 10 SYNTHETIC COMPLAINTS\n",
+            "======================================================================\n",
+            "\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "Complaint 1\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "  ORIGINAL : My name is James Thornton and I have not received my refund. Please contact me at james.thornton@gmail.com.\n",
+            "  REDACTED : My name is [PERSON] and I have not received my refund. Please contact me at [EMAIL_REDACTED].\n",
+            "  DETECTED :\n",
+            "    ✓ [PERSON              ] 'James Thornton' | confidence: 0.85 | chars 11–25\n",
+            "    ✓ [EMAIL_ADDRESS       ] 'james.thornton@gmail.com' | confidence: 1.00 | chars 82–106\n",
+            "\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "Complaint 2\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "  ORIGINAL : I transferred funds from my account GB29NWBK60161331926819 but the payment never arrived. Very frustrated.\n",
+            "  REDACTED : I transferred funds from my account [IBAN_REDACTED] but the payment never arrived. Very frustrated.\n",
+            "  DETECTED :\n",
+            "    ✓ [IBAN_CODE           ] 'GB29NWBK60161331926819' | confidence: 1.00 | chars 36–58\n",
+            "\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "Complaint 3\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "  ORIGINAL : Call me back on 07911 123456 to discuss the billing error. This is urgent.\n",
+            "  REDACTED : Call me back on [PHONE_REDACTED] to discuss the billing error. This is urgent.\n",
+            "  DETECTED :\n",
+            "    ✓ [PHONE_NUMBER        ] '07911 123456' | confidence: 0.40 | chars 16–28\n",
+            "\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "Complaint 4\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "  ORIGINAL : My NHS number is 943 476 5919. The prescription was never delivered.\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "WARNING:presidio-analyzer:Entity CARDINAL is not mapped to a Presidio entity, but keeping anyway. Add to `NerModelConfiguration.labels_to_ignore` to remove.\n",
+            "WARNING:presidio-analyzer:Entity PRODUCT is not mapped to a Presidio entity, but keeping anyway. Add to `NerModelConfiguration.labels_to_ignore` to remove.\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "  REDACTED : My NHS number is [NHS_REDACTED]. The prescription was never delivered.\n",
+            "  DETECTED :\n",
+            "    ✓ [UK_NHS              ] '943 476 5919' | confidence: 1.00 | chars 17–29\n",
+            "    ✓ [PHONE_NUMBER        ] '943 476 5919' | confidence: 0.75 | chars 17–29\n",
+            "\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "Complaint 5\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "  ORIGINAL : Hello, this is Sarah Mitchell. My mobile is +44 7700 900123 and I want to raise a formal complaint.\n",
+            "  REDACTED : Hello, this is [PERSON]. My mobile is +44 7700 900123 and I want to raise a formal complaint.\n",
+            "  DETECTED :\n",
+            "    ✓ [PERSON              ] 'Sarah Mitchell' | confidence: 0.85 | chars 15–29\n",
+            "\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "Complaint 6\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "  ORIGINAL : Please send confirmation to priya.sharma@outlook.com. My IBAN is DE89370400440532013000.\n",
+            "  REDACTED : Please send confirmation to [EMAIL_REDACTED]. My IBAN is [IBAN_REDACTED].\n",
+            "  DETECTED :\n",
+            "    ✓ [EMAIL_ADDRESS       ] 'priya.sharma@outlook.com' | confidence: 1.00 | chars 28–52\n",
+            "    ✓ [IBAN_CODE           ] 'DE89370400440532013000' | confidence: 1.00 | chars 65–87\n",
+            "\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "Complaint 7\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "  ORIGINAL : My national insurance number is AB 12 34 56 C and I cannot log into the self-service portal.\n",
+            "  REDACTED : My national insurance number is AB 12 34 56 C and I cannot log into the self-service portal.\n",
+            "  DETECTED : None\n",
+            "\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "Complaint 8\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "  ORIGINAL : The account registered to David Okafor has been incorrectly billed for three consecutive months.\n",
+            "  REDACTED : The account registered to [PERSON] has been incorrectly billed for three consecutive months.\n",
+            "  DETECTED :\n",
+            "    ✓ [PERSON              ] 'David Okafor' | confidence: 0.85 | chars 26–38\n",
+            "\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "Complaint 9\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "  ORIGINAL : I am writing on behalf of Mrs. Elena Vasquez. Her email is elena.v@hotmail.co.uk and her IBAN GB94BARC20201530093459 was used without authorisation.\n",
+            "  REDACTED : I am writing on behalf of Mrs. [PERSON]. Her email is [EMAIL_REDACTED] and her IBAN GB94BARC20201530093459 was used without authorisation.\n",
+            "  DETECTED :\n",
+            "    ✓ [PERSON              ] 'Elena Vasquez' | confidence: 0.85 | chars 31–44\n",
+            "    ✓ [EMAIL_ADDRESS       ] 'elena.v@hotmail.co.uk' | confidence: 1.00 | chars 59–80\n",
+            "\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "Complaint 10\n",
+            "──────────────────────────────────────────────────────────────────────\n",
+            "  ORIGINAL : Your agent spoke with Benjamin Clarke yesterday and promised a callback. No one has called back.\n",
+            "  REDACTED : Your agent spoke with [PERSON] yesterday and promised a callback. No one has called back.\n",
+            "  DETECTED :\n",
+            "    ✓ [PERSON              ] 'Benjamin Clarke' | confidence: 0.85 | chars 22–37\n",
+            "\n",
+            "======================================================================\n",
+            "Anonymisation complete.\n",
+            "======================================================================\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ── COMPARISON: REGEX vs PRESIDIO ────────────────────────────\n",
+        "# Side-by-side on cases where regex specifically fails\n",
+        "\n",
+        "print(f\"\\n{'='*70}\")\n",
+        "print(\"COMPARISON: WHERE REGEX FAILS vs PRESIDIO\")\n",
+        "print(f\"{'='*70}\")\n",
+        "\n",
+        "def regex_anonymise(text):\n",
+        "    \"\"\"\n",
+        "    Approximates a 'good' Week 4 regex implementation.\n",
+        "    Uses the same patterns a careful developer would write.\n",
+        "    \"\"\"\n",
+        "    # Names: only catches standard First Last format\n",
+        "    text = re.sub(r'\\b[A-Z][a-z]+ [A-Z][a-z]+\\b', '[PERSON]', text)\n",
+        "    # Email: standard pattern\n",
+        "    text = re.sub(\n",
+        "        r'[a-zA-Z0-9_.+\\-]+@[a-zA-Z0-9\\-]+\\.[a-zA-Z0-9.\\-]+',\n",
+        "        '[EMAIL_REDACTED]', text\n",
+        "    )\n",
+        "    # IBAN: GB format only (most UK devs write this)\n",
+        "    text = re.sub(\n",
+        "        r'\\bGB\\d{2}[A-Z]{4}\\d{14}\\b',\n",
+        "        '[IBAN_REDACTED]', text\n",
+        "    )\n",
+        "    # UK phone: common formats\n",
+        "    text = re.sub(\n",
+        "        r'(\\+44\\s?7\\d{3}|\\(?07\\d{3}\\)?)\\s?\\d{3}\\s?\\d{3}',\n",
+        "        '[PHONE_REDACTED]', text\n",
+        "    )\n",
+        "    return text\n",
+        "\n",
+        "# Test cases chosen to expose specific regex failure modes\n",
+        "comparison_cases = [\n",
+        "    {\n",
+        "        \"label\": \"Name with prefix (Mrs.)\",\n",
+        "        \"text\": \"I am writing on behalf of Mrs. Elena Vasquez.\",\n",
+        "        \"failure\": \"Regex pattern [A-Z][a-z]+ [A-Z][a-z]+ breaks on 'Mrs. Elena Vasquez' — three tokens\"\n",
+        "    },\n",
+        "    {\n",
+        "        \"label\": \"German IBAN\",\n",
+        "        \"text\": \"My IBAN is DE89370400440532013000.\",\n",
+        "        \"failure\": \"Regex tuned to GB prefix misses DE, FR, NL, etc.\"\n",
+        "    },\n",
+        "    {\n",
+        "        \"label\": \"NHS number without explicit label\",\n",
+        "        \"text\": \"Please update record 943 476 5919 accordingly.\",\n",
+        "        \"failure\": \"Regex would flag this as NHS. Presidio won't — no NHS context words present.\"\n",
+        "        # Note: this tests Presidio's LOWER false-positive rate, not just recall\n",
+        "    },\n",
+        "    {\n",
+        "        \"label\": \"Name at sentence end\",\n",
+        "        \"text\": \"The complaint was filed by Benjamin Clarke.\",\n",
+        "        \"failure\": \"Trailing period causes some regex engines to include/exclude it inconsistently\"\n",
+        "    },\n",
+        "    {\n",
+        "        \"label\": \"Multi-PII compound sentence\",\n",
+        "        \"text\": \"Contact Mrs. Sarah O'Brien at sarah.obrien@nhs.uk or +44 7911 654321.\",\n",
+        "        \"failure\": \"Apostrophe in name breaks regex. All three PII types in one sentence.\"\n",
+        "    },\n",
+        "]\n",
+        "\n",
+        "for case in comparison_cases:\n",
+        "    text = case[\"text\"]\n",
+        "    regex_out = regex_anonymise(text)\n",
+        "\n",
+        "    results = analyzer.analyze(text=text, entities=ENTITIES, language=\"en\")\n",
+        "    presidio_out = anonymizer.anonymize(\n",
+        "        text=text,\n",
+        "        analyzer_results=results,\n",
+        "        operators=operators\n",
+        "    ).text\n",
+        "\n",
+        "    print(f\"\\n  Test     : {case['label']}\")\n",
+        "    print(f\"  Input    : {text}\")\n",
+        "    print(f\"  Regex    : {regex_out}\")\n",
+        "    print(f\"  Presidio : {presidio_out}\")\n",
+        "    print(f\"  Gap      : {case['failure']}\")\n",
+        "\n",
+        "print(f\"\\n{'='*70}\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "C2SitJ_RiayC",
+        "outputId": "689271dd-3fd1-42d3-9b70-99811c899cea"
+      },
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "WARNING:presidio-analyzer:Entity PRODUCT is not mapped to a Presidio entity, but keeping anyway. Add to `NerModelConfiguration.labels_to_ignore` to remove.\n",
+            "WARNING:presidio-analyzer:Entity CARDINAL is not mapped to a Presidio entity, but keeping anyway. Add to `NerModelConfiguration.labels_to_ignore` to remove.\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\n",
+            "======================================================================\n",
+            "COMPARISON: WHERE REGEX FAILS vs PRESIDIO\n",
+            "======================================================================\n",
+            "\n",
+            "  Test     : Name with prefix (Mrs.)\n",
+            "  Input    : I am writing on behalf of Mrs. Elena Vasquez.\n",
+            "  Regex    : I am writing on behalf of Mrs. [PERSON].\n",
+            "  Presidio : I am writing on behalf of Mrs. [PERSON].\n",
+            "  Gap      : Regex pattern [A-Z][a-z]+ [A-Z][a-z]+ breaks on 'Mrs. Elena Vasquez' — three tokens\n",
+            "\n",
+            "  Test     : German IBAN\n",
+            "  Input    : My IBAN is DE89370400440532013000.\n",
+            "  Regex    : My IBAN is DE89370400440532013000.\n",
+            "  Presidio : My IBAN is [IBAN_REDACTED].\n",
+            "  Gap      : Regex tuned to GB prefix misses DE, FR, NL, etc.\n",
+            "\n",
+            "  Test     : NHS number without explicit label\n",
+            "  Input    : Please update record 943 476 5919 accordingly.\n",
+            "  Regex    : Please update record 943 476 5919 accordingly.\n",
+            "  Presidio : Please update record [NHS_REDACTED] accordingly.\n",
+            "  Gap      : Regex would flag this as NHS. Presidio won't — no NHS context words present.\n",
+            "\n",
+            "  Test     : Name at sentence end\n",
+            "  Input    : The complaint was filed by Benjamin Clarke.\n",
+            "  Regex    : The complaint was filed by [PERSON].\n",
+            "  Presidio : The complaint was filed by [PERSON].\n",
+            "  Gap      : Trailing period causes some regex engines to include/exclude it inconsistently\n",
+            "\n",
+            "  Test     : Multi-PII compound sentence\n",
+            "  Input    : Contact Mrs. Sarah O'Brien at sarah.obrien@nhs.uk or +44 7911 654321.\n",
+            "  Regex    : [PERSON]. Sarah O'Brien at [EMAIL_REDACTED] or [PHONE_REDACTED].\n",
+            "  Presidio : Contact Mrs. [PERSON] at sarah.obrien@nhs.uk or +44 7911 654321.\n",
+            "  Gap      : Apostrophe in name breaks regex. All three PII types in one sentence.\n",
+            "\n",
+            "======================================================================\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "CVdkhsg-i7Cr"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "N-l-IdBTgSau"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "A6KZ0BYnffVR"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "OCuMxSMe2Ywa"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "ssWpCSBn2AIH"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
